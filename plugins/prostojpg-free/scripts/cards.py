@@ -480,6 +480,28 @@ def cmd_feedback(args: argparse.Namespace) -> int:
     return 0
 
 
+STAR_STATE = Path.home() / ".prostojpg-free" / "star.json"
+
+
+def cmd_star(args: argparse.Namespace) -> int:
+    """Просьба о звезде — после каждой карточки, пока пользователь не подтвердит."""
+    state_path = Path(args.state).expanduser() if args.state else STAR_STATE
+    state = _load_state(state_path)
+
+    if args.done:
+        state["done"] = True
+        _save_state(state_path, state)
+        log("DONE: звезду больше не предлагаем")
+        return 0
+
+    if state.get("done"):
+        log("SKIP_DONE: звезда уже поставлена")
+        return 0
+
+    log("ASK")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cards.py",
@@ -515,6 +537,11 @@ def build_parser() -> argparse.ArgumentParser:
     fb.add_argument("--done", action="store_true", help="отзыв оставлен — больше не спрашивать")
     fb.add_argument("--state", default=None, help="путь к файлу состояния (для теста)")
     fb.set_defaults(func=cmd_feedback)
+
+    st = sub.add_parser("star", help="напоминание о звезде на GitHub (после карточки)")
+    st.add_argument("--done", action="store_true", help="звезда поставлена — больше не предлагать")
+    st.add_argument("--state", default=None, help="путь к файлу состояния (для теста)")
+    st.set_defaults(func=cmd_star)
 
     return p
 
