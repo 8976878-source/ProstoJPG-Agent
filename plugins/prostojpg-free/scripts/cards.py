@@ -19,6 +19,7 @@ import argparse
 import json
 import math
 import shutil
+import subprocess
 import sys
 import zipfile
 from datetime import datetime, timezone
@@ -392,6 +393,49 @@ def cmd_version(args: argparse.Namespace) -> int:
     return 0
 
 
+def _plugin_root() -> Path:
+    return Path(__file__).resolve().parents[1]
+
+
+def _plugin_version(root: Path) -> str:
+    try:
+        data = json.loads((root / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        return str(data.get("version", "?"))
+    except (OSError, ValueError):
+        return "?"
+
+
+def cmd_update(args: argparse.Namespace) -> int:
+    """Обновляет плагин из GitHub по явной команде пользователя («обнови»)."""
+    root = _plugin_root()
+    before = _plugin_version(root)
+    try:
+        top = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "--show-toplevel"],
+            capture_output=True, text=True, check=True,
+        ).stdout.strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        log("Это копия без git — обновить нельзя.")
+        log("Переустановите: git clone --depth 1 "
+            "https://github.com/8976878-source/ProstoJPG-Free.git")
+        return 1
+
+    try:
+        subprocess.run(["git", "-C", top, "fetch", "--quiet", "origin", "main"], check=True)
+        subprocess.run(["git", "-C", top, "merge", "--ff-only", "--quiet", "origin/main"], check=True)
+    except subprocess.CalledProcessError as exc:
+        log(f"Не удалось обновиться: {exc}")
+        return 1
+
+    after = _plugin_version(root)
+    if before == after:
+        log(f"Уже последняя версия: {after}")
+    else:
+        log(f"Обновлено: {before} -> {after}")
+    log("Откройте новый чат (или выполните /reload-plugins), чтобы подхватились навыки.")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cards.py",
@@ -419,6 +463,9 @@ def build_parser() -> argparse.ArgumentParser:
     inf.set_defaults(func=cmd_info)
     ver = sub.add_parser("version", help="показать версию плагина")
     ver.set_defaults(func=cmd_version)
+
+    upd = sub.add_parser("update", help="обновить плагин из GitHub (только по команде пользователя)")
+    upd.set_defaults(func=cmd_update)
 
     return p
 

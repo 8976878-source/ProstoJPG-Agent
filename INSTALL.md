@@ -57,7 +57,7 @@ python3 plugins/prostojpg-free/scripts/cards.py info --job-dir job
 
 | Клиент | Как обновить |
 |---|---|
-| Arena | `bash update.sh` внутри папки плагина — либо повторный `git clone` |
+| Arena | написать в чате **«обнови»** — плагин обновится сам; вручную — `bash update.sh` |
 | Claude Code | `claude plugin marketplace update prostojpg-free-marketplace` → `claude plugin update prostojpg-free@prostojpg-free-marketplace` → `/reload-plugins` или новый чат |
 | Codex | `codex plugin marketplace upgrade prostojpg-free-marketplace` → `codex plugin add prostojpg-free@prostojpg-free-marketplace` |
 
