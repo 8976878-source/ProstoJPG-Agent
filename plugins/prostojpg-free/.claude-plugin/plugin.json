@@ -1,6 +1,6 @@
 {
   "name": "prostojpg-free",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ProstoJPG Free: карточки товаров WB/Ozon по загруженным фото. Генерация — встроенным инструментом агента, без входа в ChatGPT и API-ключей.",
   "author": {
     "name": "ProstoJPG Free"
