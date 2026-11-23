@@ -431,8 +431,7 @@ def cmd_update(args: argparse.Namespace) -> int:
     if before == after:
         log(f"Уже последняя версия: {after}")
     else:
-        log(f"Обновлено: {before} -> {after}")
-    log("Откройте новый чат (или выполните /reload-plugins), чтобы подхватились навыки.")
+        log(f"Обновили: {before} -> {after}")
     return 0
 
 
