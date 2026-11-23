@@ -382,6 +382,16 @@ def cmd_info(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_version(args: argparse.Namespace) -> int:
+    manifest = Path(__file__).resolve().parent.parent / ".claude-plugin" / "plugin.json"
+    try:
+        version = json.loads(manifest.read_text(encoding="utf-8")).get("version", "?")
+    except (OSError, ValueError):
+        version = "?"
+    log(f"ProstoJPG Free {version}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cards.py",
@@ -407,6 +417,9 @@ def build_parser() -> argparse.ArgumentParser:
     inf = sub.add_parser("info", help="показать состояние задания")
     inf.add_argument("--job-dir", default="job")
     inf.set_defaults(func=cmd_info)
+    ver = sub.add_parser("version", help="показать версию плагина")
+    ver.set_defaults(func=cmd_version)
+
     return p
 
 

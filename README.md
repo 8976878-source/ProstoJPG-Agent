@@ -80,4 +80,4 @@ references/generation.md                 правила обработки и д
 downloads/*.zip                          готовые архивы плагина
 ```
 
-Версия 1.0.4. Лицензия: MIT (см. LICENSE).
+Версия 1.0.5. Лицензия: MIT (см. LICENSE).
