@@ -13,7 +13,7 @@
 ## Codex
 
 ```text
-codex plugin marketplace add <owner>/ProstoJPG-Free
+codex plugin marketplace add 8976878-source/ProstoJPG-Free
 codex plugin add prostojpg-free@prostojpg-free-marketplace
 ```
 
@@ -29,7 +29,7 @@ codex plugin add prostojpg-free@prostojpg-free-marketplace
 ## Claude Code
 
 ```text
-claude plugin marketplace add <owner>/ProstoJPG-Free
+claude plugin marketplace add 8976878-source/ProstoJPG-Free
 claude plugin install prostojpg-free@prostojpg-free-marketplace
 ```
 
