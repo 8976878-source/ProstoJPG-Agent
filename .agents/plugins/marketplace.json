@@ -1,0 +1,20 @@
+{
+  "name": "prostojpg-free-marketplace",
+  "interface": {
+    "displayName": "ProstoJPG Free"
+  },
+  "plugins": [
+    {
+      "name": "prostojpg-free",
+      "source": {
+        "source": "local",
+        "path": "./plugins/prostojpg-free"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

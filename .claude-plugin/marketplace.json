@@ -1,0 +1,14 @@
+{
+  "name": "prostojpg-free-marketplace",
+  "owner": {
+    "name": "ProstoJPG Free",
+    "url": "https://github.com/"
+  },
+  "plugins": [
+    {
+      "name": "prostojpg-free",
+      "source": "./plugins/prostojpg-free",
+      "description": "Карточки товаров для WB/Ozon по загруженным фото на встроенном генераторе агента. Без входа в ChatGPT, без API-ключей и подписок."
+    }
+  ]
+}
