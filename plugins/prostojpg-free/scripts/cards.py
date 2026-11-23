@@ -320,6 +320,9 @@ def fit_and_save(src: Path, dst: Path, target: tuple[int, int], min_side: int) -
         nw, nh = max(1, round(w * scale)), max(1, round(h * scale))
         if (nw, nh) != (w, h):
             im = im.resize((nw, nh), Image.LANCZOS)
+            if scale > 1.05:  # апскейл до 2K — вернуть немного резкости
+                from PIL import ImageFilter
+                im = im.filter(ImageFilter.UnsharpMask(radius=1.2, percent=55, threshold=2))
         dst.parent.mkdir(parents=True, exist_ok=True)
         if dst.suffix.lower() in {".jpg", ".jpeg"}:
             im.save(dst, "JPEG", quality=92, optimize=True, progressive=True)
@@ -515,8 +518,8 @@ def build_parser() -> argparse.ArgumentParser:
     pr.add_argument("--job-dir", default="job", help="куда положить задание (по умолчанию ./job)")
     pr.add_argument("--mode", default="1", choices=["1", "2", "3"], help="режим карточки")
     pr.add_argument("--product", help="фото своего товара (режимы 2 и 3)")
-    pr.add_argument("--min-side", type=int, default=1200, help="минимум короткой стороны, px")
-    pr.add_argument("--max-side", type=int, default=4000, help="максимум длинной стороны, px")
+    pr.add_argument("--min-side", type=int, default=2048, help="минимум короткой стороны, px (2K)")
+    pr.add_argument("--max-side", type=int, default=4096, help="максимум длинной стороны, px")
     pr.set_defaults(func=cmd_prepare)
 
     ex = sub.add_parser("export", help="собрать готовые фото из generated/")
