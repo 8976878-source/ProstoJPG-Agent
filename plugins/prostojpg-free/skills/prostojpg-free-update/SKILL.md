@@ -39,4 +39,4 @@ description: ПростоJPG-Агент — обновить плагин до �
   Генерация карточек по-прежнему никуда не ходит.
 - Не обновляйте плагин молча, без команды пользователя.
 - Если папка без `.git` — не выдумывайте, скажите переустановить:
-  `git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git`
+  `git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Agent.git`

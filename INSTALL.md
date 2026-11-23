@@ -5,7 +5,7 @@
 
 ## Здесь, в Arena Agent Mode
 
-Плагин уже установлен в этом воркспейсе: `/home/user/ProstoJPG-Free`.
+Плагин уже установлен в этом воркспейсе: `/home/user/ProstoJPG-Agent`.
 Просто приложите фото карточки и напишите:
 
 > создай похожую карточку
@@ -16,7 +16,7 @@
 В новом чате с пустым `/home/user` выполните:
 
 ```bash
-git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/user/ProstoJPG-Free
+git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Agent.git /home/user/ProstoJPG-Agent
 ```
 
 Если папка уже есть — `bash update.sh`.
@@ -24,14 +24,14 @@ git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/u
 ## Codex
 
 ```text
-codex plugin marketplace add 8976878-source/ProstoJPG-Free
+codex plugin marketplace add 8976878-source/ProstoJPG-Agent
 codex plugin add prostojpg-free@prostojpg-free-marketplace
 ```
 
 Локально, без GitHub:
 
 ```text
-codex plugin marketplace add /абсолютный/путь/ProstoJPG-Free
+codex plugin marketplace add /абсолютный/путь/ProstoJPG-Agent
 codex plugin add prostojpg-free@prostojpg-free-marketplace
 ```
 
@@ -40,7 +40,7 @@ codex plugin add prostojpg-free@prostojpg-free-marketplace
 ## Claude Code
 
 ```text
-claude plugin marketplace add 8976878-source/ProstoJPG-Free
+claude plugin marketplace add 8976878-source/ProstoJPG-Agent
 claude plugin install prostojpg-free@prostojpg-free-marketplace
 ```
 

@@ -417,7 +417,7 @@ def cmd_update(args: argparse.Namespace) -> int:
     except (subprocess.CalledProcessError, FileNotFoundError):
         log("Это копия без git — обновить нельзя.")
         log("Переустановите: git clone --depth 1 "
-            "https://github.com/8976878-source/ProstoJPG-Free.git")
+            "https://github.com/8976878-source/ProstoJPG-Agent.git")
         return 1
 
     try:

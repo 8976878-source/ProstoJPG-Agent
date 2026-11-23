@@ -35,10 +35,10 @@
 ## Новый чат в Arena
 
 Arena не хранит плагин между чатами. В новом чате напишите агенту
-«Установи https://github.com/8976878-source/ProstoJPG-Free» — или выполните:
+«Установи https://github.com/8976878-source/ProstoJPG-Agent» — или выполните:
 
 ```bash
-git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/user/ProstoJPG-Free
+git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Agent.git /home/user/ProstoJPG-Agent
 ```
 
 ## Обновление
@@ -50,12 +50,12 @@ git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/u
 Полная инструкция — [INSTALL.md](INSTALL.md). Для Codex и Claude Code:
 
 ```text
-codex plugin marketplace add 8976878-source/ProstoJPG-Free
+codex plugin marketplace add 8976878-source/ProstoJPG-Agent
 codex plugin add prostojpg-free@prostojpg-free-marketplace
 ```
 
 ```text
-claude plugin marketplace add 8976878-source/ProstoJPG-Free
+claude plugin marketplace add 8976878-source/ProstoJPG-Agent
 claude plugin install prostojpg-free@prostojpg-free-marketplace
 ```
 

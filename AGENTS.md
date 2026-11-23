@@ -1,6 +1,6 @@
 # ProstoJPG Free: установка по просьбе пользователя
 
-Если пользователь пишет «Установи https://github.com/<owner>/ProstoJPG-Free/»,
+Если пользователь пишет «Установи https://github.com/<owner>/ProstoJPG-Agent/»,
 прочитайте INSTALL.md и выполните команды установки для текущего клиента.
 В Codex: `codex plugin marketplace add`, `codex plugin add`.
 В Claude Code: `claude plugin marketplace add`, `claude plugin install`.
