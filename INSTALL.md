@@ -10,6 +10,17 @@
 
 > создай похожую карточку
 
+## Новый чат в Arena
+
+Плагин не сохраняется между чатами — он лежит в воркспейсе, а не в реестре Arena.
+В новом чате с пустым `/home/user` выполните:
+
+```bash
+git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/user/ProstoJPG-Free
+```
+
+Если папка уже есть — `bash update.sh`.
+
 ## Codex
 
 ```text

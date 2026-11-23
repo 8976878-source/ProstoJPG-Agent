@@ -46,6 +46,19 @@
 поставьте оценку и короткий отзыв, это помогает проекту. Плагин напоминает об этом
 не чаще раза в день и перестаёт после того, как вы оставите отзыв.
 
+## Новый чат в Arena
+
+Arena не хранит плагин между чатами: он живёт в воркспейсе беседы, а не в реестре.
+Если новый чат начался с пустым `/home/user` — поставьте плагин одной командой:
+
+```bash
+git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/user/ProstoJPG-Free
+```
+
+или просто напишите агенту: «Установи https://github.com/8976878-source/ProstoJPG-Free».
+Если папка уже есть (`ls /home/user/ProstoJPG-Free`) — достаточно `bash update.sh`.
+Проверить версию: `python3 plugins/prostojpg-free/scripts/cards.py version`.
+
 ## Обновление
 
 Напишите в чате **«обнови»** — плагин скачает свежую версию с GitHub и покажет,
@@ -92,4 +105,4 @@ references/generation.md                 правила обработки и д
 downloads/*.zip                          готовые архивы плагина
 ```
 
-Версия 1.0.7. Лицензия: MIT (см. LICENSE).
+Версия 1.0.8. Лицензия: MIT (см. LICENSE).
