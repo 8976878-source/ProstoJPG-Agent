@@ -436,6 +436,51 @@ def cmd_update(args: argparse.Namespace) -> int:
     return 0
 
 
+FEEDBACK_STATE = Path.home() / ".prostojpg-free" / "feedback.json"
+
+
+def _load_state(path: Path) -> dict:
+    if path.is_file():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if isinstance(data, dict):
+                return data
+        except ValueError:
+            pass
+    return {}
+
+
+def _save_state(path: Path, state: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def cmd_feedback(args: argparse.Namespace) -> int:
+    """Просьба об отзыве — не чаще раза в день и до момента, пока отзыв не оставлен."""
+    state_path = Path(args.state).expanduser() if args.state else FEEDBACK_STATE
+    state = _load_state(state_path)
+
+    if args.done:
+        state["done"] = True
+        _save_state(state_path, state)
+        log("DONE: больше не спрашиваем")
+        return 0
+
+    if state.get("done"):
+        log("SKIP_DONE: отзыв уже получен")
+        return 0
+
+    today = datetime.now().date().isoformat()
+    if state.get("last_asked") == today:
+        log("SKIP_TODAY: сегодня уже спрашивали")
+        return 0
+
+    state["last_asked"] = today
+    _save_state(state_path, state)
+    log("ASK")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cards.py",
@@ -466,6 +511,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     upd = sub.add_parser("update", help="обновить плагин из GitHub (только по команде пользователя)")
     upd.set_defaults(func=cmd_update)
+
+    fb = sub.add_parser("feedback", help="напоминание про отзыв в Chrome Web Store (не чаще раза в день)")
+    fb.add_argument("--done", action="store_true", help="отзыв оставлен — больше не спрашивать")
+    fb.add_argument("--state", default=None, help="путь к файлу состояния (для теста)")
+    fb.set_defaults(func=cmd_feedback)
 
     return p
 
