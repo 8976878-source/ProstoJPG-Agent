@@ -1,5 +1,7 @@
 # ПростоJPG Free от ПростоСеллера
 
+![ProstoJPG Free](docs/cover.png)
+
 Создавайте карточки товаров для Wildberries и Ozon по загруженным фото.
 Промпты уже встроены. **Без входа в ChatGPT, без API-ключей и без подписок** —
 генерация идёт встроенным инструментом генерации изображений того агента, в
@@ -40,6 +42,19 @@
 агент попросит ещё одно фото, сам товар. После каждой готовой карточки меню
 появляется снова.
 
+## Что нового
+
+- **1.0.10** — обложка проекта и этот раздел.
+- **1.0.9** — обновление в одно слово: «обнови».
+- **1.0.8** — подсказка, как вернуться к плагину в новом чате.
+- **1.0.7** — просьба об отзыве не чаще раза в день.
+- **1.0.6** — обновление по команде «обнови».
+- **1.0.5** — проверка версии и обновление в один клик.
+- **1.0.4** — просьба о звезде после первой карточки.
+- **1.0.3** — после каждого фото агент спрашивает, что делаем.
+- **1.0.2** — окно с готовыми подсказками сразу после установки.
+- **1.0.1** — кнопки выбора режима вместо команд.
+
 ## Отзыв
 
 Если вы пользуетесь расширением [ПростоJPG в Chrome Web Store](https://chromewebstore.google.com/detail/%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BEjpg/djjocjgglhbkcfclclilmamlcoggoole) —
@@ -48,22 +63,16 @@
 
 ## Новый чат в Arena
 
-Arena не хранит плагин между чатами: он живёт в воркспейсе беседы, а не в реестре.
-Если новый чат начался с пустым `/home/user` — поставьте плагин одной командой:
+Arena не хранит плагин между чатами. В новом чате напишите агенту
+«Установи https://github.com/8976878-source/ProstoJPG-Free» — или выполните:
 
 ```bash
 git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/user/ProstoJPG-Free
 ```
 
-или просто напишите агенту: «Установи https://github.com/8976878-source/ProstoJPG-Free».
-Если папка уже есть (`ls /home/user/ProstoJPG-Free`) — достаточно `bash update.sh`.
-Проверить версию: `python3 plugins/prostojpg-free/scripts/cards.py version`.
-
 ## Обновление
 
-Напишите в чате **«обнови»** — плагин скачает свежую версию с GitHub и покажет,
-что изменилось. Вручную то же самое делает `bash update.sh`, а версию показывает
-`python3 plugins/prostojpg-free/scripts/cards.py version`.
+Напишите в чате **«обнови»** — плагин обновится сам.
 
 ## Правила результата
 
@@ -76,8 +85,7 @@ git clone --depth 1 https://github.com/8976878-source/ProstoJPG-Free.git /home/u
 
 ## Установка
 
-Полная инструкция — [INSTALL.md](INSTALL.md). Здесь, в Arena, плагин уже стоит:
-`/home/user/ProstoJPG-Free`. Для Codex и Claude Code:
+Полная инструкция — [INSTALL.md](INSTALL.md). Для Codex и Claude Code:
 
 ```text
 codex plugin marketplace add 8976878-source/ProstoJPG-Free
@@ -91,18 +99,4 @@ claude plugin install prostojpg-free@prostojpg-free-marketplace
 
 Зависимость для сборки фото: Python 3.9+ и `pip install "Pillow>=10.4"`.
 
-## Структура
-
-```
-.agents/plugins/marketplace.json        marketplace для Codex
-.claude-plugin/marketplace.json          marketplace для Claude Code
-plugins/prostojpg-free/
-  .claude-plugin/plugin.json
-  skills/prostojpg-free-1..3/SKILL.md    навыки трёх режимов
-  scripts/cards.py                       prepare / export / info (без сети)
-  scripts/requirements.txt               Pillow
-references/generation.md                 правила обработки и диагностика
-downloads/*.zip                          готовые архивы плагина
-```
-
-Версия 1.0.9. Лицензия: MIT (см. LICENSE).
+Версия 1.0.10. Лицензия: MIT (см. LICENSE).
