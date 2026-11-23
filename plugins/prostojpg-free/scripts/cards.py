@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ProstoJPG Free — локальная подготовка и сборка карточек товара.
+"""ПростоJPG-Агент — локальная подготовка и сборка карточек товара.
 
 Скрипт НЕ обращается к сети и НЕ вызывает никаких AI-API и не требует логинов.
 Он только:
@@ -210,7 +210,7 @@ def cmd_prepare(args: argparse.Namespace) -> int:
         )
 
     job = {
-        "app": "ProstoJPG Free",
+        "app": "ПростоJPG-Агент",
         "version": "1.0.0",
         "mode": str(args.mode),
         "mode_title": MODE_TITLE[str(args.mode)],
@@ -262,8 +262,8 @@ def render_gallery(job: dict) -> str:
         "h1{font-size:18px}"
     )
     return (
-        "<!doctype html><meta charset='utf-8'><title>ProstoJPG Free — исходники</title>"
-        f"<style>{css}</style><h1>ProstoJPG Free · {job['mode_title']}</h1>"
+        "<!doctype html><meta charset='utf-8'><title>ПростоJPG-Агент — исходники</title>"
+        f"<style>{css}</style><h1>ПростоJPG-Агент · {job['mode_title']}</h1>"
         + "".join(rows)
     )
 
@@ -389,7 +389,7 @@ def cmd_version(args: argparse.Namespace) -> int:
         version = json.loads(manifest.read_text(encoding="utf-8")).get("version", "?")
     except (OSError, ValueError):
         version = "?"
-    log(f"ProstoJPG Free {version}")
+    log(f"ПростоJPG-Агент {version}")
     return 0
 
 
@@ -483,7 +483,7 @@ def cmd_feedback(args: argparse.Namespace) -> int:
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cards.py",
-        description="ProstoJPG Free: подготовка исходников и сборка готовых карточек. "
+        description="ПростоJPG-Агент: подготовка исходников и сборка готовых карточек. "
         "Без сети, без AI-API, без логинов.",
     )
     sub = p.add_subparsers(dest="cmd", required=True)

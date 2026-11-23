@@ -1,7 +1,7 @@
 {
   "name": "prostojpg-free-marketplace",
   "interface": {
-    "displayName": "ProstoJPG Free"
+    "displayName": "ПростоJPG-Агент"
   },
   "plugins": [
     {
